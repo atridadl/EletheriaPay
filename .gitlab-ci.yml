@@ -1,0 +1,28 @@
+build_front:
+  image: node:latest
+  stage: build
+  script:
+    - chmod +x ./build-frontend.sh
+    - ./build-frontend.sh
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
+  only:
+    - main
+    - master
+
+build_back:
+  image: golang:latest
+  stage: build
+  script:
+    - chmod +x ./build-frontend.sh
+    - ./build-backend.sh
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
+  only:
+    - main
+    - master
+
